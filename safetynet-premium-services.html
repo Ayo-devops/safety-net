@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Services — Safetynet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBF8F3;
+    --paper-warm: #F3EEE3;
+    --pine: #1F3B35;
+    --pine-deep: #16281F;
+    --gold: #D9A65C;
+    --gold-soft: #E8C495;
+    --sage: #7A8C7E;
+    --ink: #2B2620;
+    --ink-soft: #5A5248;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'Inter', sans-serif; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; color: var(--pine-deep); }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251, 248, 243, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(31, 59, 53, 0.08);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; color: var(--pine-deep); }
+  .nav-links { display: flex; gap: 32px; list-style: none; font-size: 0.92rem; font-weight: 500; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--pine); }
+  .nav-cta { background: var(--pine); color: var(--paper); padding: 10px 20px; border-radius: 100px; font-size: 0.88rem; font-weight: 600; }
+  .nav-mobile-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 40px; height: 40px; flex-direction: column; justify-content: center; gap: 5px;
+  }
+  .nav-mobile-toggle span { width: 22px; height: 2px; background: var(--pine-deep); border-radius: 2px; }
+  .nav-mobile-panel {
+    display: none; flex-direction: column; gap: 4px;
+    padding: 10px 24px 20px; border-top: 1px solid rgba(31,59,53,0.08);
+  }
+  .nav-mobile-panel a { padding: 12px 0; font-size: 1rem; font-weight: 500; color: var(--ink-soft); border-bottom: 1px solid rgba(31,59,53,0.06); }
+  .nav-mobile-panel a:last-child { border-bottom: none; }
+  .nav-mobile-panel.open { display: flex; }
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .nav-mobile-toggle { display: flex; }
+  }
+
+  /* HERO */
+  .page-head { padding: 90px 24px 60px; background: var(--pine); color: var(--paper); text-align: center; }
+  .eyebrow {
+    display: inline-block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 18px; padding: 6px 14px;
+    border: 1px solid rgba(251,248,243,0.3); border-radius: 100px; color: var(--gold-soft);
+  }
+  .page-head h1 { color: var(--paper); font-size: clamp(2.1rem, 4.5vw, 3rem); max-width: 700px; margin: 0 auto 18px; line-height: 1.15; }
+  .page-head p { color: rgba(251,248,243,0.75); font-size: 1.1rem; max-width: 620px; margin: 0 auto; }
+
+  /* SERVICES */
+  .services { padding: 90px 24px; }
+  .service-block {
+    max-width: 1000px; margin: 0 auto 70px;
+    display: grid; grid-template-columns: 90px 1fr; gap: 32px;
+  }
+  .service-block:last-child { margin-bottom: 0; }
+  .service-icon {
+    width: 64px; height: 64px; border-radius: 16px; background: var(--paper-warm);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .service-block h2 { font-size: 1.5rem; margin-bottom: 12px; }
+  .service-block > div > p.desc { color: var(--ink-soft); font-size: 1.02rem; margin-bottom: 18px; max-width: 640px; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+  .service-list li { display: flex; align-items: flex-start; gap: 10px; color: var(--ink-soft); font-size: 0.96rem; }
+  .service-list li::before { content: "—"; color: var(--gold); flex-shrink: 0; }
+  .service-cta {
+    display: inline-flex; padding: 12px 24px; border-radius: 100px;
+    background: var(--pine); color: var(--paper); font-weight: 600; font-size: 0.9rem;
+  }
+  @media (max-width: 700px) {
+    .service-block { grid-template-columns: 1fr; }
+  }
+
+  /* WHY */
+  .why { padding: 90px 24px; background: var(--paper-warm); }
+  .why-inner { max-width: 1000px; margin: 0 auto; }
+  .why-head { text-align: center; margin-bottom: 50px; }
+  .why-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .why-card { background: var(--paper); border-radius: 16px; padding: 28px 26px; border: 1px solid rgba(31,59,53,0.08); }
+  .why-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--gold); }
+  .why-card p { color: var(--ink-soft); font-size: 0.94rem; }
+  @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; } }
+
+  /* CTA */
+  .cta-strip { padding: 90px 24px; text-align: center; }
+  .cta-strip h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 32px; }
+  .btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 100px; font-size: 0.95rem; font-weight: 600; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .btn-primary { background: var(--gold); color: var(--pine-deep); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(217,166,92,0.35); }
+  .btn-secondary { background: transparent; color: var(--pine); border: 1.5px solid var(--pine); }
+  .btn-secondary:hover { background: var(--pine); color: var(--paper); }
+
+  footer { padding: 50px 24px 36px; text-align: center; }
+  footer .logo { justify-content: center; display: flex; margin-bottom: 10px; }
+  footer .tagline { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 6px; }
+  footer .motto { color: var(--sage); font-size: 0.85rem; margin-bottom: 24px; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 20px; }
+  .footer-links a:hover { color: var(--pine); }
+  footer .copy { font-size: 0.78rem; color: var(--sage); }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Safetynet</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="free-services.html">Free Services</a></li>
+      <li><a href="premium-services.html">Premium Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="get-support.html" class="nav-cta">Get Support</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu" aria-expanded="false" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-panel" id="navPanel">
+    <a href="about.html">About</a>
+    <a href="free-services.html">Free Services</a>
+    <a href="premium-services.html">Premium Services</a>
+    <a href="get-support.html">Get Support</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section class="page-head">
+  <span class="eyebrow">Premium Services</span>
+  <h1>Build Impact That Lasts</h1>
+  <p>For governments, companies, and NGOs ready to move from good intentions to measurable outcomes, Safetynet offers hands-on, evidence-based consulting.</p>
+</section>
+
+<section class="services">
+  <div class="service-block">
+    <div class="service-icon">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 4L27 8V15C27 22 22 26.5 17 28.5C12 26.5 7 22 7 15V8L17 4Z" stroke="#1F3B35" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M12.5 16L15.5 19L21.5 12" stroke="#D9A65C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h2>Corporate Social Responsibility (CSR) Project Management</h2>
+      <p class="desc">We plan, execute, and report on CSR initiatives so your organisation's social investment translates into real, documented community impact — not just a press release.</p>
+      <ul class="service-list">
+        <li>Needs assessment and program design</li>
+        <li>On-the-ground project execution</li>
+        <li>Impact reporting for stakeholders and boards</li>
+      </ul>
+      <a href="contact.html" class="service-cta">Discuss a CSR Project</a>
+    </div>
+  </div>
+
+  <div class="service-block">
+    <div class="service-icon">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="13" r="4" stroke="#1F3B35" stroke-width="1.8"/>
+        <circle cx="22" cy="13" r="4" stroke="#D9A65C" stroke-width="1.8"/>
+        <path d="M5 28C5 23 8 20 12 20C14 20 15.5 20.8 16.5 22" stroke="#1F3B35" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M29 28C29 23 26 20 22 20C20 20 18.5 20.8 17.5 22" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <h2>Partnership &amp; Development Consulting</h2>
+      <p class="desc">We help NGOs, companies, and government bodies design partnerships that actually work — aligning goals, resources, and community needs into a single, executable plan.</p>
+      <ul class="service-list">
+        <li>Partnership strategy and structuring</li>
+        <li>Stakeholder alignment</li>
+        <li>Program development for impact-driven initiatives</li>
+      </ul>
+      <a href="contact.html" class="service-cta">Explore a Partnership</a>
+    </div>
+  </div>
+
+  <div class="service-block">
+    <div class="service-icon">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 24C9 24 12 30 20 30C28 30 31 24 31 24" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M17 4C10 4 6 9 6 15C6 19 8 21.5 8 21.5" stroke="#1F3B35" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="17" cy="15" r="4" stroke="#1F3B35" stroke-width="1.8"/>
+      </svg>
+    </div>
+    <div>
+      <h2>Paid Online Evidence-Based Therapy</h2>
+      <p class="desc">Professional, structured therapy sessions delivered online, grounded in evidence-based practice — for individuals who want or need a paid, dedicated therapeutic relationship beyond our free emotional support line.</p>
+      <ul class="service-list">
+        <li>Evidence-based therapeutic approaches</li>
+        <li>Flexible online scheduling</li>
+        <li>Confidential, one-on-one sessions</li>
+      </ul>
+      <a href="contact.html" class="service-cta">Book a Session</a>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-inner">
+    <div class="why-head">
+      <span class="eyebrow" style="color: var(--pine); border-color: rgba(31,59,53,0.2);">Why Safetynet</span>
+      <h2>Why Work With Safetynet</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Grounded in Social Work Practice</h3>
+        <p>Our approach comes from direct field experience, not theory alone.</p>
+      </div>
+      <div class="why-card">
+        <h3>Dual Perspective</h3>
+        <p>We understand both the boardroom and the household we're trying to reach.</p>
+      </div>
+      <div class="why-card">
+        <h3>Accountable Delivery</h3>
+        <p>Every engagement comes with clear reporting and outcomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <h2>Ready to talk through your goals?</h2>
+  <div class="btn-row">
+    <a href="contact.html" class="btn btn-primary">Request a Proposal</a>
+    <a href="contact.html" class="btn btn-secondary">Schedule a Call</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="logo">Safetynet</a>
+  <p class="tagline">The abode for unconditional support, protection and care.</p>
+  <p class="motto">Support · Protect · Empower</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="free-services.html">Free Services</a>
+    <a href="premium-services.html">Premium Services</a>
+    <a href="get-support.html">Get Support</a>
+    <a href="give-partner.html">Give/Partner</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copy">Together, we build hope. Together, we build lives.</p>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navPanel = document.getElementById('navPanel');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navPanel.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+</script>
+
+</body>
+</html>
