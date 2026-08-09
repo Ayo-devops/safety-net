@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safetynet — The abode for unconditional support, protection and care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBF8F3;
+    --paper-warm: #F3EEE3;
+    --pine: #1F3B35;
+    --pine-deep: #16281F;
+    --gold: #D9A65C;
+    --gold-soft: #E8C495;
+    --sage: #7A8C7E;
+    --ink: #2B2620;
+    --ink-soft: #5A5248;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; color: var(--pine-deep); }
+
+  a { color: inherit; text-decoration: none; }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251, 248, 243, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(31, 59, 53, 0.08);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px; max-width: 1120px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600;
+    color: var(--pine-deep); letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+    font-size: 0.92rem; font-weight: 500; color: var(--ink-soft);
+  }
+  .nav-links a:hover { color: var(--pine); }
+  .nav-cta {
+    background: var(--pine); color: var(--paper);
+    padding: 10px 20px; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 600;
+  }
+  .nav-mobile-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    width: 40px; height: 40px; flex-direction: column; justify-content: center; gap: 5px;
+  }
+  .nav-mobile-toggle span { width: 22px; height: 2px; background: var(--pine-deep); border-radius: 2px; }
+  .nav-mobile-panel {
+    display: none; flex-direction: column; gap: 4px;
+    padding: 10px 24px 20px; border-top: 1px solid rgba(31,59,53,0.08);
+  }
+  .nav-mobile-panel a {
+    padding: 12px 0; font-size: 1rem; font-weight: 500; color: var(--ink-soft);
+    border-bottom: 1px solid rgba(31,59,53,0.06);
+  }
+  .nav-mobile-panel a:last-child { border-bottom: none; }
+  .nav-mobile-panel.open { display: flex; }
+
+  /* HERO */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 100px 24px 90px;
+  }
+  .hero-net {
+    position: absolute; top: -10%; right: -15%;
+    width: 700px; height: 700px; opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1120px; margin: 0 auto; position: relative; z-index: 2;
+  }
+  .eyebrow {
+    display: inline-block; font-size: 0.82rem; font-weight: 600;
+    color: var(--pine); letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 22px; padding: 6px 14px; border: 1px solid rgba(31,59,53,0.2);
+    border-radius: 100px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.12; max-width: 780px; margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .hero p {
+    font-size: 1.15rem; color: var(--ink-soft); max-width: 560px; margin-bottom: 36px;
+  }
+  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: 100px;
+    font-size: 0.95rem; font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary { background: var(--gold); color: var(--pine-deep); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(217,166,92,0.35); }
+  .btn-secondary { background: transparent; color: var(--pine); border: 1.5px solid var(--pine); }
+  .btn-secondary:hover { background: var(--pine); color: var(--paper); }
+
+  /* THREE WORDS */
+  .promise { padding: 70px 24px; background: var(--paper-warm); }
+  .promise-head { text-align: center; margin-bottom: 50px; }
+  .promise-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px; }
+  .promise-head p { color: var(--ink-soft); font-size: 1.05rem; max-width: 560px; margin: 0 auto; }
+  .promise-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    max-width: 1120px; margin: 0 auto;
+  }
+  .promise-card {
+    background: var(--paper); border-radius: 16px; padding: 32px 28px;
+    border: 1px solid rgba(31,59,53,0.08);
+  }
+  .promise-card .icon { width: 44px; height: 44px; margin-bottom: 18px; }
+  .promise-card .word {
+    font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .promise-card p { color: var(--ink-soft); font-size: 0.98rem; }
+
+  /* WHAT WE OFFER */
+  .offer { padding: 90px 24px; }
+  .offer-inner { max-width: 1120px; margin: 0 auto; }
+  .offer-head { text-align: center; margin-bottom: 50px; }
+  .offer-head .eyebrow { display: inline-block; }
+  .offer-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .offer-card {
+    padding: 40px 34px; border-radius: 20px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .offer-card.free { background: var(--pine); color: var(--paper); }
+  .offer-card.premium { background: var(--paper-warm); border: 1px solid rgba(31,59,53,0.1); }
+  .offer-card .icon { width: 40px; height: 40px; }
+  .offer-card h3 { font-size: 1.5rem; }
+  .offer-card.free h3 { color: var(--paper); }
+  .offer-card p { font-size: 1rem; opacity: 0.85; flex-grow: 1; }
+  .offer-card .link-out { font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+  .offer-card.free .link-out { color: var(--gold-soft); }
+  .offer-card.premium .link-out { color: var(--pine); }
+
+  /* FOUNDER */
+  .founder { padding: 90px 24px; background: var(--paper-warm); }
+  .founder-inner {
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+  .founder .icon { width: 56px; height: 56px; margin: 0 auto 28px; display: block; }
+  .founder blockquote {
+    font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    font-weight: 400; color: var(--pine-deep); line-height: 1.45;
+    margin-bottom: 28px; font-style: italic;
+  }
+  .founder cite {
+    font-style: normal; font-size: 0.95rem; color: var(--ink-soft);
+    display: block;
+  }
+  .founder cite strong { color: var(--pine); display: block; font-size: 1rem; margin-bottom: 2px; }
+
+  /* STATS */
+  .stats { padding: 70px 24px; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    max-width: 1120px; margin: 0 auto; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 600; color: var(--gold);
+  }
+  .stat-label { font-size: 0.88rem; color: var(--ink-soft); margin-top: 4px; }
+  .stats-note {
+    text-align: center; font-size: 0.8rem; color: var(--sage); margin-top: 30px; font-style: italic;
+  }
+
+  /* GET INVOLVED */
+  .involved {
+    padding: 100px 24px; background: var(--pine); color: var(--paper);
+    text-align: center;
+  }
+  .involved h2 { color: var(--paper); font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+  .involved p { color: rgba(251,248,243,0.75); max-width: 520px; margin: 0 auto 36px; font-size: 1.05rem; }
+  .involved .btn-row { justify-content: center; }
+  .involved .btn-primary { background: var(--gold); color: var(--pine-deep); }
+  .involved .btn-secondary { border-color: var(--paper); color: var(--paper); }
+  .involved .btn-secondary:hover { background: var(--paper); color: var(--pine-deep); }
+
+  /* FOOTER */
+  footer { padding: 50px 24px 36px; text-align: center; }
+  footer .logo { justify-content: center; display: flex; margin-bottom: 10px; }
+  footer .tagline { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 6px; }
+  footer .motto { color: var(--sage); font-size: 0.85rem; margin-bottom: 24px; }
+  .footer-links {
+    display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+    font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 20px;
+  }
+  .footer-links a:hover { color: var(--pine); }
+  footer .copy { font-size: 0.78rem; color: var(--sage); }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .nav-mobile-toggle { display: flex; }
+    .promise-grid { grid-template-columns: 1fr; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .hero-net { opacity: 0.2; right: -30%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Safetynet</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="free-services.html">Free Services</a></li>
+      <li><a href="premium-services.html">Premium Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="get-support.html" class="nav-cta">Get Support</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu" aria-expanded="false" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-panel" id="navPanel">
+    <a href="about.html">About</a>
+    <a href="free-services.html">Free Services</a>
+    <a href="premium-services.html">Premium Services</a>
+    <a href="get-support.html">Get Support</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navPanel = document.getElementById('navPanel');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navPanel.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+</script>
+
+
+<section class="hero">
+  <svg class="hero-net" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#1F3B35" stroke-width="1.2" fill="none" opacity="0.5">
+      <path d="M50,150 Q350,50 650,150" />
+      <path d="M50,250 Q350,150 650,250" />
+      <path d="M50,350 Q350,250 650,350" />
+      <path d="M50,450 Q350,350 650,450" />
+      <path d="M50,550 Q350,450 650,550" />
+      <path d="M100,50 Q200,350 100,650" />
+      <path d="M220,50 Q320,350 220,650" />
+      <path d="M340,50 Q440,350 340,650" />
+      <path d="M460,50 Q560,350 460,650" />
+      <path d="M580,50 Q680,350 580,650" />
+    </g>
+  </svg>
+  <div class="hero-inner">
+    <span class="eyebrow">Support · Protect · Empower</span>
+    <h1>The abode for unconditional support, protection and care.</h1>
+    <p>Safetynet is a community built on one belief — that everyone deserves access to support, resources, and a better tomorrow, no matter where they're starting from.</p>
+    <div class="btn-row">
+      <a href="get-support.html" class="btn btn-primary">Get Support Now</a>
+      <a href="give-partner.html" class="btn btn-secondary">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <div class="promise-head">
+    <h2>We Care. We Protect. We Empower.</h2>
+    <p>Three words, one promise. Whatever brought you here — a hard season, a hard question, or a desire to give back — you're in the right place.</p>
+  </div>
+  <div class="promise-grid">
+    <div class="promise-card">
+      <svg class="icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 24C8 24 12 32 22 32C32 32 36 24 36 24" stroke="#D9A65C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 18C14 14.5 16.5 12 20 12C22 12 22.5 13 22 14" stroke="#1F3B35" stroke-width="2" stroke-linecap="round"/>
+        <path d="M30 18C30 14.5 27.5 12 24 12C22 12 21.5 13 22 14" stroke="#1F3B35" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="22" cy="24" r="3" fill="#D9A65C"/>
+      </svg>
+      <div class="word">We Care</div>
+      <p>Every person who reaches out is met with dignity, not judgment.</p>
+    </div>
+    <div class="promise-card">
+      <svg class="icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 8L34 12V21C34 28.5 29 33.5 22 36C15 33.5 10 28.5 10 21V12L22 8Z" stroke="#1F3B35" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M17 21L20.5 24.5L28 17" stroke="#D9A65C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="word">We Protect</div>
+      <p>Your privacy and safety come first, always.</p>
+    </div>
+    <div class="promise-card">
+      <svg class="icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 34V16" stroke="#1F3B35" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 24L22 16L30 24" stroke="#1F3B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="22" cy="12" r="4" fill="#D9A65C"/>
+      </svg>
+      <div class="word">We Empower</div>
+      <p>We don't just respond to crises. We build pathways out of them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="offer">
+  <div class="offer-inner">
+    <div class="offer-head">
+      <span class="eyebrow">What We Offer</span>
+      <h2>Two tracks, one mission.</h2>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card free">
+        <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 20C8 20 8 8 20 8C32 8 32 20 32 20" stroke="#E8C495" stroke-width="2" stroke-linecap="round"/>
+          <path d="M8 20V26C8 27 9 28 10 28H30C31 28 32 27 32 26V20" stroke="#E8C495" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 28V32" stroke="#E8C495" stroke-width="2" stroke-linecap="round"/>
+          <path d="M26 28V32" stroke="#E8C495" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Free Support</h3>
+        <p>For individuals and families who need immediate help: emotional support, food, micro-funds, tech access, and faith resources.</p>
+        <a href="free-services.html" class="link-out">See Free Services →</a>
+      </div>
+      <div class="offer-card premium">
+        <svg class="icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="14" width="24" height="18" rx="2" stroke="#1F3B35" stroke-width="2"/>
+          <path d="M14 14V11C14 9.5 15 8 17 8H23C25 8 26 9.5 26 11V14" stroke="#1F3B35" stroke-width="2"/>
+          <path d="M8 21H32" stroke="#1F3B35" stroke-width="2"/>
+          <path d="M18 21V24C18 24.5 18.5 25 19 25H21C21.5 25 22 24.5 22 24V21" stroke="#D9A65C" stroke-width="2"/>
+        </svg>
+        <h3>Premium Consulting</h3>
+        <p>For governments, companies, and NGOs who want to build real social impact: CSR project management, partnership development, and evidence-based therapy.</p>
+        <a href="premium-services.html" class="link-out">See Premium Services →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="founder">
+  <div class="founder-inner">
+    <svg class="icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#D9A65C" stroke-width="1.4" opacity="0.85">
+        <path d="M4 16C16 6 40 6 52 16" />
+        <path d="M4 28C16 20 40 20 52 28" />
+        <path d="M4 40C16 34 40 34 52 40" />
+        <path d="M12 4C10 18 10 38 12 52" />
+        <path d="M28 4C26 18 26 38 28 52" />
+        <path d="M44 4C42 18 42 38 44 52" />
+      </g>
+    </svg>
+    <blockquote>"Safetynet started from a simple observation: too many people fall through the cracks not because help doesn't exist, but because it's hard to find, hard to trust, or hard to afford. We're closing that gap, one person and one partnership at a time."</blockquote>
+    <cite><strong>Morohunranti Oluwatosin Adebowale</strong>Founder, Student Social Worker</cite>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">—</div>
+      <div class="stat-label">Families supported</div>
+    </div>
+    <div>
+      <div class="stat-num">—</div>
+      <div class="stat-label">Micro-funds disbursed</div>
+    </div>
+    <div>
+      <div class="stat-num">—</div>
+      <div class="stat-label">Partner organisations</div>
+    </div>
+    <div>
+      <div class="stat-num">—</div>
+      <div class="stat-label">Anonymous conversations held</div>
+    </div>
+  </div>
+  <p class="stats-note">Placeholder — replace with real figures once available.</p>
+</section>
+
+<section class="involved">
+  <h2>Get Involved</h2>
+  <p>Whether you need help today or want to help someone else, there's a door for you here.</p>
+  <div class="btn-row">
+    <a href="get-support.html" class="btn btn-primary">Request Support</a>
+    <a href="give-partner.html" class="btn btn-secondary">Donate</a>
+    <a href="give-partner.html" class="btn btn-secondary">Partner With Us</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="logo">Safetynet</a>
+  <p class="tagline">The abode for unconditional support, protection and care.</p>
+  <p class="motto">Support · Protect · Empower</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="free-services.html">Free Services</a>
+    <a href="premium-services.html">Premium Services</a>
+    <a href="get-support.html">Get Support</a>
+    <a href="give-partner.html">Give/Partner</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copy">Together, we build hope. Together, we build lives.</p>
+</footer>
+
+</body>
+</html>
