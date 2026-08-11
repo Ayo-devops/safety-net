@@ -226,9 +226,8 @@
     <div class="contact-form">
       <h2>Prefer to Write First?</h2>
       <p>Fill out the form below and we'll get back to you as soon as possible.</p>
-      <!-- This form is UI-only. Wire it up to a Google Form (embed or redirect) 
-           or a service like Formspree so submissions actually arrive somewhere. -->
-      <form>
+      <!-- Wired to Formspree — submissions go to whatever email you connected there. -->
+      <form action="https://formspree.io/f/mqpzqnjw" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
