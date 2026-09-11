@@ -1,0 +1,14 @@
+/* Shared, locally rendered two-tone icon system. */
+.sn-icon { color: var(--pine); display: block; flex-shrink: 0; }
+.sn-icon .icon-accent { stroke: var(--gold); }
+.sn-icon .icon-wash { fill: var(--gold); fill-opacity: .13; }
+.promise-card .sn-icon, .value-card .sn-icon { width: 58px; height: 58px; padding: 11px; border-radius: 17px; background: var(--paper-warm); margin-bottom: 20px; }
+.offer-card .sn-icon { width: 56px; height: 56px; padding: 10px; border-radius: 16px; background: rgba(31,59,53,.05); }
+.offer-card.free .sn-icon { color: var(--paper); background: rgba(251,248,243,.09); }
+.offer-card.free .icon-accent, .give-card.featured .icon-accent, .route-card.premium .icon-accent { stroke: var(--gold-soft); }
+.icon-wrap .sn-icon, .route-icon .sn-icon { width: 32px; height: 32px; }
+.give-card.featured .sn-icon, .route-card.premium .sn-icon { color: var(--paper); }
+.founder .sn-icon { width: 56px; height: 56px; margin: 0 auto 28px; color: var(--pine); }
+.qr-box .sn-icon { width: 58px; height: 58px; }
+.qr-card a { display: block; border-radius: 12px; }
+.qr-card a:hover .qr-box { background: var(--gold-soft); }

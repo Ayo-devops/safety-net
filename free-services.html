@@ -126,6 +126,8 @@
 
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
+<link rel="stylesheet" href="assets/imagery.css">
+<link rel="stylesheet" href="assets/icons.css">
 </head>
 <body>
 
@@ -155,18 +157,28 @@
 <section class="page-head">
   <span class="eyebrow">Free Services</span>
   <h1>Support With No Strings Attached</h1>
-  <p>Every service on this page is free, confidential, and open to anyone who needs it. You don't need to prove anything to ask for help.</p>
+  <p>Explore our free support services and upcoming programmes. Each section explains how to get help and whether applications are open.</p>
 </section>
 
 <section class="services">
+  <div class="service-photo-pair">
+    <figure class="human-photo "><img src="assets/images/volunteers.webp" srcset="assets/images/volunteers-640.webp 640w, assets/images/volunteers.webp 1280w" sizes="(max-width: 860px) calc(100vw - 48px), 540px" width="1280" height="853" alt="Volunteers preparing bags of fresh food together." loading="lazy" decoding="async"><figcaption class="photo-caption">Illustrative imagery</figcaption></figure>
+    <figure class="human-photo "><img src="assets/images/digital-learning.webp" srcset="assets/images/digital-learning-640.webp 640w, assets/images/digital-learning.webp 1280w" sizes="(max-width: 860px) calc(100vw - 48px), 540px" width="1280" height="853" alt="Two women learning together at a laptop." loading="lazy" decoding="async"><figcaption class="photo-caption">Illustrative imagery</figcaption></figure>
+  </div>
+  <section class="service-card" id="scholarship" aria-labelledby="scholarship-title" style="scroll-margin-top: 110px;">
+    <div class="icon-wrap">
+      <svg class="sn-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path class="icon-accent icon-wash" d="m2 9 10-5 10 5-10 5Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v8"/></svg>
+    </div>
+    <div>
+      <h2 id="scholarship-title">Scholarship Programme</h2>
+      <p><strong>Details coming soon.</strong> Eligibility, funding details, application dates, and required documents will be published here once confirmed.</p>
+      <p style="margin-top: 10px; font-weight: 600; color: var(--pine);">Applications are not yet open.</p>
+    </div>
+  </section>
   <!-- Replace href values below with your live, published Google Form links -->
   <div class="service-card">
     <div class="icon-wrap">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 26C9 26 12 29 15 29C18 29 21 26 21 26" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M8 15C8 9 11 4 15 4C19 4 22 9 22 15" stroke="#1F3B35" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M6 15H24V19C24 20 23 21 22 21H8C7 21 6 20 6 19V15Z" stroke="#1F3B35" stroke-width="1.8" stroke-linejoin="round"/>
-      </svg>
+      <svg class=" sn-icon" data-icon="chat" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path class="icon-wash" d="M21 11a9 9 0 0 1-9 9 10 10 0 0 1-4-1l-6 3 2-6a9 9 0 1 1 17-5Z"/><path class="icon-accent" d="M7 9h10M7 13h6"/></svg>
     </div>
     <div>
       <h2>Anonymous Emotional Support</h2>
@@ -177,11 +189,7 @@
 
   <div class="service-card">
     <div class="icon-wrap">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 12C6 12 6 5 15 5C24 5 24 12 24 12" stroke="#1F3B35" stroke-width="1.8" stroke-linecap="round"/>
-        <rect x="5" y="12" width="20" height="13" rx="2" stroke="#1F3B35" stroke-width="1.8"/>
-        <path d="M11 18H19" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
+      <svg class=" sn-icon" data-icon="food" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M3 11h18l-2 10H5ZM8 11l2-8m6 8-2-8"/><path class="icon-accent" d="M8 15v2m4-2v2m4-2v2"/></svg>
     </div>
     <div>
       <h2>Food Bank Application</h2>
@@ -192,10 +200,7 @@
 
   <div class="service-card">
     <div class="icon-wrap">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="15" r="10" stroke="#D9A65C" stroke-width="1.8"/>
-        <path d="M15 10V15L18.5 17.5" stroke="#1F3B35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <svg class=" sn-icon" data-icon="wallet" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M21 8V5a2 2 0 0 0-2-2H5a3 3 0 0 0 0 6h16v12H5a3 3 0 0 1-3-3V6"/><path class="icon-accent icon-wash" d="M22 12h-6a2 2 0 0 0 0 5h6Z"/><path d="M17 14.5h.01"/></svg>
     </div>
     <div>
       <h2>Micro Fund Application</h2>
@@ -206,10 +211,7 @@
 
   <div class="service-card">
     <div class="icon-wrap">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="5" y="6" width="20" height="14" rx="2" stroke="#1F3B35" stroke-width="1.8"/>
-        <path d="M3 24H27" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
+      <svg class=" sn-icon" data-icon="laptop" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="m4 17-3 4h22l-3-4"/><path class="icon-accent" d="m9 7-3 3 3 3m6-6 3 3-3 3"/></svg>
     </div>
     <div>
       <h2>Free Tech Empowerment</h2>
@@ -220,10 +222,7 @@
 
   <div class="service-card faith">
     <div class="icon-wrap">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 4V26" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M8 10H22" stroke="#D9A65C" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
+      <svg class=" sn-icon" data-icon="faith" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M12 22V4M8 8h8"/><path class="icon-accent" d="m4 3 2 2m14-2-2 2M2 11h3m14 0h3"/><path class="icon-wash" d="M5 22a7 7 0 0 1 14 0"/></svg>
     </div>
     <div>
       <h2>Access Jesus Portal</h2>
