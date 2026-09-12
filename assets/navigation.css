@@ -1,0 +1,10 @@
+/* Allow the longer pathway labels room before switching to mobile navigation. */
+.nav-links { gap: 24px; }
+.nav-links a, .nav-cta { white-space: nowrap; }
+@media (max-width: 1050px) {
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: flex; }
+}
+@media (min-width: 1051px) {
+  .nav-mobile-panel.open { display: none; }
+}
