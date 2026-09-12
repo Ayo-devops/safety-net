@@ -1,0 +1,4 @@
+.availability-note { display: inline-block; color: var(--pine); font-size: .9rem; font-weight: 600; line-height: 1.5; }
+.give-card.featured .availability-note { color: var(--gold-soft); }
+.route-card.unavailable { cursor: default; }
+.route-card.unavailable:hover { transform: none; box-shadow: none; }
