@@ -1,0 +1,16 @@
+.listener-options { max-width: 1080px; margin: 0 auto; padding: 0 24px 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.listener-options .eyebrow { align-self: flex-start; margin-bottom: 0; }
+.listener-notice { max-width: 1032px; margin: 0 auto 48px; padding: 30px; border: 1px solid rgba(31,59,53,.12); border-radius: 20px; background: var(--paper-warm); }
+.listener-notice h2, .listener-intro h2 { font-size: 1.5rem; margin-bottom: 12px; }
+.listener-notice p, .listener-intro p { color: var(--ink-soft); margin-top: 12px; }
+.listener-notice a { color: var(--pine); text-decoration: underline; }
+.listener-intro { max-width: 1080px; margin: 0 auto 28px; }
+#listener-contacts { scroll-margin-top: 110px; }
+.listener-guidelines { padding-left: 22px; color: var(--ink-soft); }
+.listener-guidelines li { margin: 16px 0; }
+.listener-guidelines a { overflow-wrap: anywhere; }
+#conversation-guidelines { scroll-margin-top: 110px; }
+@media (max-width: 700px) {
+  .listener-options { grid-template-columns: 1fr; }
+  .listener-notice { margin-left: 24px; margin-right: 24px; padding: 24px; }
+}

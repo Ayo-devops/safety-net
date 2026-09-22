@@ -1,10 +1,15 @@
 /* Allow the longer pathway labels room before switching to mobile navigation. */
-.nav-links { gap: 24px; }
+.nav-links { gap: 8px; align-items: center; }
+.nav-links a { display: inline-block; padding: 9px 12px; border-radius: 999px; }
+.nav-links a[aria-current="page"], .nav-mobile-panel a[aria-current="page"] { background: var(--paper-warm); color: var(--pine-deep); box-shadow: inset 0 0 0 1px var(--gold-soft); font-weight: 600; }
+.nav-inner .logo[aria-current="page"] { border-radius: 999px; outline: 1px solid var(--gold-soft); outline-offset: 8px; background: var(--paper-warm); }
+.nav-cta[aria-current="page"] { box-shadow: 0 0 0 3px var(--gold-soft); }
+.nav-mobile-panel a { padding-left: 14px; padding-right: 14px; border-radius: 999px; }
 .nav-links a, .nav-cta { white-space: nowrap; }
-@media (max-width: 1050px) {
+@media (max-width: 1200px) {
   .nav-links { display: none; }
   .nav-mobile-toggle { display: flex; }
 }
-@media (min-width: 1051px) {
+@media (min-width: 1201px) {
   .nav-mobile-panel.open { display: none; }
 }
