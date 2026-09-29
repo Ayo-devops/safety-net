@@ -1,6 +1,6 @@
 # Connect the certificate register
 
-Prepared locally; not applied to Supabase or deployed. The founder reports that the project exists. No real certificate has been inserted.
+Applied and deployed on 29 September 2026. The production endpoint connected successfully and passed valid, revoked, unknown, invalid-input, unavailable and rate-limit checks. The fictional test record was removed afterward. No known real certificate has been inserted.
 
 Project supplied by the user: `ylqpkxszoclefiuqygbm`. Dashboard: https://supabase.com/dashboard/project/ylqpkxszoclefiuqygbm . Standard API URL derived from that reference: https://ylqpkxszoclefiuqygbm.supabase.co . Access and live configuration have not been verified.
 
@@ -33,7 +33,7 @@ Use a clearly fictional test record and mark it as such. Run `node scripts/gener
 
 Scan the actual generated QR and compare the registered details. The old generator's number-only query links need updating to the new `verify.html#code=...` format. Do not print final certificates before this works.
 
-The website still has its preview notice and no public navigation link. Remove the notice and enable discovery only after the live tests, approved public fields, founder's operational process and deployment review are complete. No push was performed as part of preparation.
+The preview notice was removed after live testing. The page remains outside public navigation while certificate issuing procedures and the first approved real records are prepared.
 
 ## Reference documentation
 

@@ -1,6 +1,6 @@
 # Certificate verification — stage one
 
-Status: local prototype plus prepared production backend. Supabase project creation is reported complete; the SQL setup has not been applied and the endpoint has not been deployed. No real certificate records. No certificate JSON register is published. The supplied certificate and JSON screenshot are samples, not issued records. See `docs/supabase-setup.md` for the current setup steps; the checklist below describes launch requirements, not a claim that the prepared code is live.
+Status: production lookup deployed and connected to the private Supabase register. Live checks passed for valid, revoked, unknown, invalid-input, unavailable and rate-limited results. The fictional test record was removed after testing; there are no known real certificate records yet. No certificate JSON register is published. The supplied certificate and JSON screenshot are samples, not issued records.
 
 Run `node scripts/preview-verification.mjs` from the repository and open http://127.0.0.1:8001/verify.html. The server binds only to loopback and serves an explicit list of public file types.
 
@@ -26,7 +26,7 @@ Only valid results include `certificate`: string fields `number`, `name`, `cours
 - Add persistent abuse/rate limiting; redact tokens and personal data from logs; configure no-store responses and body limits.
 - Confirm public fields, recipient notice, access roles, record maintenance, revocation and retention with the founder.
 - Test real backend access boundaries, throttling, invalid/missing records, failures and QR scans before enabling live verification.
-- Remove the prototype notice only after the live system is verified. No staff admin panel has been built yet.
+- Add approved real records through the documented issuing workflow. No staff admin panel has been built yet.
 - Use `verify.html#code=TOKEN` for new QR codes. Older `?cert=NUMBER` links cannot securely identify records and show instructions instead. The sample certificate is not a compatibility commitment.
 
 Do not deploy the preview server as an API. Its fixtures are fictional and have no persistence or production security controls. Stage one introduces no hosting configuration changes and is not linked from public navigation.
