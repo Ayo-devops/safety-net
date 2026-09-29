@@ -9,9 +9,19 @@ export function createHandler(env = process.env, fetcher = fetch) {
     const origin = request.headers.get('origin');
     if (origin && origin !== new URL(request.url).origin) return json(403, { status: 'unavailable' });
     if (!request.headers.get('content-type')?.startsWith('application/json')) return json(415, { status: 'unavailable' });
-    if (env.CERTIFICATE_VERIFICATION_ENABLED !== 'true') return json(503, { status: 'unavailable' });
+    if (env.CERTIFICATE_VERIFICATION_ENABLED !== 'true') {
+      console.warn('certificate_lookup_config: ENABLED_NOT_TRUE');
+      return json(503, { status: 'unavailable' });
+    }
     const { SUPABASE_URL: url, SUPABASE_SECRET_KEY: key, CERTIFICATE_RATE_LIMIT_SECRET: salt } = env;
-    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(url || '') || !key?.startsWith('sb_secret_') || !salt || salt.length < 32 || !context.ip) {
+    const issues = [];
+    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(url || '')) issues.push('PROJECT_URL_INVALID');
+    if (!key?.startsWith('sb_secret_')) issues.push('SERVER_KEY_FORMAT_INVALID');
+    if (!salt || salt.length < 32) issues.push('RATE_SECRET_MISSING_OR_SHORT');
+    if (!context.ip) issues.push('CLIENT_IP_UNAVAILABLE');
+    if (issues.length) {
+      // Fixed labels only: never include environment values or request contents.
+      console.warn(`certificate_lookup_config: ${issues.join(', ')}`);
       return json(503, { status: 'unavailable' });
     }
     try {
