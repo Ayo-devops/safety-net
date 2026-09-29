@@ -1,0 +1,6 @@
+dist/
+.env
+.env.*
+node_modules/
+.netlify/
+private-certificates/
