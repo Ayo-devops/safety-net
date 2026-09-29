@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Certificate Administration | Safetynet</title>
+  <link rel="stylesheet" href="assets/certificate-admin.css">
+  <script src="assets/qrcode.min.js" defer></script>
+  <script src="assets/certificate-admin.js" defer></script>
+</head>
+<body>
+  <header class="admin-header">
+    <a class="brand" href="index.html">Safetynet</a>
+    <div>
+      <span class="private-label">Private certificate administration</span>
+      <button id="signOut" class="text-button" type="button" hidden>Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="loginView" class="auth-card" aria-labelledby="loginTitle">
+      <span class="eyebrow">Authorized access only</span>
+      <h1 id="loginTitle">Certificate Administration</h1>
+      <p>Use the founder’s authorized email to receive a secure one-time sign-in link. No Supabase dashboard login is needed for routine certificate work.</p>
+      <form id="loginForm">
+        <label for="adminEmail">Authorized email</label>
+        <input id="adminEmail" name="email" type="email" required autocomplete="email" placeholder="Enter the authorized email">
+        <button class="primary-button" type="submit">Email My Sign-in Link</button>
+      </form>
+      <p id="loginStatus" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="adminView" hidden>
+      <div class="dashboard-heading">
+        <div>
+          <span class="eyebrow">Certificate desk</span>
+          <h1>Create and register a certificate</h1>
+          <p>Approved details are registered as valid and placed directly into a print-ready certificate.</p>
+        </div>
+        <span class="session-badge">Signed in securely</span>
+      </div>
+
+      <div class="admin-grid">
+        <form id="certificateForm" class="admin-card">
+          <h2>Recipient details</h2>
+          <div class="field-grid">
+            <label>Certificate number
+              <input id="certificateNumber" name="number" required pattern="SN-[0-9]{4}-[0-9]{6}" placeholder="SN-2026-000002" autocomplete="off">
+            </label>
+            <label>Completion date
+              <input id="completionDate" name="completion_date" type="date" required>
+            </label>
+            <label class="full-field">Recipient’s full name
+              <input id="recipientName" name="name" required maxlength="200" autocomplete="off">
+            </label>
+            <label class="full-field">Course or programme
+              <input id="courseName" name="course" required maxlength="200" autocomplete="off">
+            </label>
+            <label>Duration <small>Optional, printed only</small>
+              <input id="courseDuration" name="duration" maxlength="80" placeholder="4 weeks">
+            </label>
+            <label>Skills summary <small>Optional, printed only</small>
+              <input id="skillsSummary" name="skills" maxlength="180" placeholder="Practical web development">
+            </label>
+          </div>
+          <label class="approval-check">
+            <input id="approval" type="checkbox" required>
+            <span>I have checked the recipient’s name, course, date and certificate number and approve this certificate for issuance.</span>
+          </label>
+          <button id="createCertificate" class="primary-button" type="submit">Register and Generate Certificate</button>
+          <p id="formStatus" class="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="admin-card guidance-card">
+          <h2>Before registering</h2>
+          <ol>
+            <li>Confirm the recipient completed the named programme.</li>
+            <li>Check spelling and the completion date carefully.</li>
+            <li>Use a new certificate number; numbers cannot be reused.</li>
+            <li>Print only after the green success message appears.</li>
+          </ol>
+          <p>The verification record publishes only the certificate number, recipient name, course and date to someone holding its QR link.</p>
+        </aside>
+      </div>
+
+      <section id="certificateSection" class="certificate-section" hidden>
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Ready to issue</span>
+            <h2>Generated certificate</h2>
+          </div>
+          <div class="action-row">
+            <button id="downloadRecord" class="secondary-button" type="button">Download Private Backup</button>
+            <button id="printCertificate" class="primary-button compact" type="button">Print Certificate</button>
+          </div>
+        </div>
+        <div class="certificate-scroll">
+          <article id="certificate" aria-label="Generated Safetynet certificate">
+            <div class="certificate-inner">
+              <div class="certificate-number">Certificate No.: <strong id="outputNumber"></strong></div>
+              <img class="certificate-logo" src="assets/images/certificate-logo.png" alt="Safetynet">
+              <h2>CERTIFICATE</h2>
+              <div class="certificate-subtitle">OF COMPLETION</div>
+              <div class="certificate-small">THIS CERTIFIES THAT</div>
+              <div class="certificate-name" id="outputName"></div>
+              <p>has successfully completed the training programme at Safetynet<br>and is hereby awarded this Certificate of Completion in</p>
+              <div class="certificate-course" id="outputCourse"></div>
+              <div class="certificate-details" id="outputDetails"></div>
+              <p class="certificate-recognition">In recognition of your dedication, commitment and achievement<br>in building a safer, more empowered and inclusive future.</p>
+              <div class="certificate-footer">
+                <div class="certificate-qr"><div id="qrBox"></div>Scan to verify with Safetynet<br>safetyneto.netlify.app</div>
+                <div class="signature"><b id="outputDate"></b><div>Date of Completion</div></div>
+                <div class="signature"><b>&nbsp;</b><div>Founder, Safetynet</div></div>
+                <div class="certificate-seal">SAFETYNET</div>
+              </div>
+              <div class="certificate-bar">SAFETYNET &nbsp;•&nbsp; USING TECHNOLOGY TO PROFFER SOLUTIONS TO SOCIAL PROBLEMS</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="records-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Register</span>
+            <h2>Recent certificates</h2>
+          </div>
+          <button id="refreshRecords" class="secondary-button" type="button">Refresh</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Number</th><th>Recipient</th><th>Course</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="recordsBody"><tr><td colspan="6">Loading records…</td></tr></tbody>
+          </table>
+        </div>
+        <p id="recordsStatus" class="status" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

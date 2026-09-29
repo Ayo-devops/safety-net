@@ -9,7 +9,7 @@ async function copyAssets(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const source = path.join(dir, entry.name);
     if (entry.isDirectory()) await copyAssets(source);
-    else if (/\.(css|js|webp|jpg|png|svg|pdf)$/.test(entry.name)) {
+    else if (/\.(css|js|webp|jpg|png|svg|pdf|txt)$/.test(entry.name)) {
       await mkdir(path.dirname(path.join('dist', source)), { recursive: true });
       await copyFile(source, path.join('dist', source));
     }
