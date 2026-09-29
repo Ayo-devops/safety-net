@@ -227,6 +227,47 @@
   const chatConsentNote = document.getElementById('chatConsentNote');
   let chatLoading = false;
   let chatLoadTimer;
+  const maxChatLoadAttempts = 3;
+
+  function resetChatButton(message) {
+    chatLoading = false;
+    startWebChat.disabled = false;
+    startWebChat.textContent = 'Try Website Chat Again';
+    chatConsentNote.textContent = message;
+  }
+
+  function loadWebChat(attempt) {
+    const previousScript = document.getElementById('tawkEmbedScript');
+    if (previousScript) previousScript.remove();
+
+    chatConsentNote.textContent = attempt === 1
+      ? 'Connecting to the website chat service…'
+      : `Connection interrupted. Retrying automatically (${attempt}/${maxChatLoadAttempts})…`;
+
+    const widgetScript = document.createElement('script');
+    widgetScript.id = 'tawkEmbedScript';
+    widgetScript.async = true;
+    widgetScript.src = 'https://embed.tawk.to/6abbf9e5100fc5344640a9b5/1k3n4gb4i';
+    widgetScript.charset = 'UTF-8';
+    widgetScript.setAttribute('crossorigin', '*');
+    widgetScript.onerror = function () {
+      window.clearTimeout(chatLoadTimer);
+      widgetScript.remove();
+      if (attempt < maxChatLoadAttempts) {
+        window.setTimeout(function () {
+          if (chatLoading) loadWebChat(attempt + 1);
+        }, attempt * 1500);
+        return;
+      }
+      resetChatButton('The chat service could not load after three attempts. Check your connection and try again.');
+    };
+    document.body.appendChild(widgetScript);
+
+    chatLoadTimer = window.setTimeout(function () {
+      if (!chatLoading) return;
+      resetChatButton('The chat service is taking longer than expected. Check your connection and try again.');
+    }, 45000);
+  }
 
   function openWebChat() {
     if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
@@ -238,7 +279,6 @@
     chatLoading = true;
     startWebChat.disabled = true;
     startWebChat.textContent = 'Opening Chat…';
-    chatConsentNote.textContent = 'Connecting to the website chat service…';
 
     window.Tawk_API = window.Tawk_API || {};
     window.Tawk_LoadStart = new Date();
@@ -251,25 +291,7 @@
       window.Tawk_API.showWidget();
       window.Tawk_API.maximize();
     };
-
-    const widgetScript = document.createElement('script');
-    widgetScript.async = true;
-    widgetScript.src = 'https://embed.tawk.to/6abbf9e5100fc5344640a9b5/1k3n4gb4i';
-    widgetScript.charset = 'UTF-8';
-    widgetScript.setAttribute('crossorigin', '*');
-    widgetScript.onerror = function () {
-      window.clearTimeout(chatLoadTimer);
-      widgetScript.remove();
-      chatLoading = false;
-      startWebChat.disabled = false;
-      startWebChat.textContent = 'Try Website Chat Again';
-      chatConsentNote.textContent = 'The chat service could not load. Check your connection and try again.';
-    };
-    document.body.appendChild(widgetScript);
-    chatLoadTimer = window.setTimeout(function () {
-      if (!chatLoading) return;
-      widgetScript.onerror();
-    }, 15000);
+    loadWebChat(1);
   }
 
   startWebChat.addEventListener('click', openWebChat);

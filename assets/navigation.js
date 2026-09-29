@@ -13,14 +13,14 @@
 
   navLinks.innerHTML = `
     <li class="nav-dropdown${groupClass(servicePages)}">
-      <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Services <span aria-hidden="true">⌄</span></button>
+      <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Services <span class="nav-chevron" aria-hidden="true"></span></button>
       <div class="nav-dropdown-menu">
         <a href="free-services.html"${current('free-services.html')}><span>Free Services</span><small>Food, skills and empowerment</small></a>
         <a href="premium-services.html"${current('premium-services.html')}><span>Professional Services</span><small>Therapy and specialist support</small></a>
       </div>
     </li>
     <li class="nav-dropdown${groupClass(supportPages)}">
-      <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Get Support <span aria-hidden="true">⌄</span></button>
+      <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Get Support <span class="nav-chevron" aria-hidden="true"></span></button>
       <div class="nav-dropdown-menu">
         <a href="get-support.html"${current('get-support.html')}><span>Support Overview</span><small>Find the right pathway</small></a>
         <a href="support-chat.html"${current('support-chat.html')}><span>Talk to a Listener</span><small>Website chat and guidance</small></a>
@@ -39,14 +39,14 @@
   mobilePanel.innerHTML = `
     <a href="index.html"${current('index.html')}>Home</a>
     <details class="nav-mobile-group${groupClass(servicePages)}"${servicePages.includes(currentPage) ? ' open' : ''}>
-      <summary>Services <span aria-hidden="true">⌄</span></summary>
+      <summary>Services <span class="nav-chevron" aria-hidden="true"></span></summary>
       <div class="nav-mobile-submenu">
         <a href="free-services.html"${current('free-services.html')}>Free Services</a>
         <a href="premium-services.html"${current('premium-services.html')}>Professional Services</a>
       </div>
     </details>
     <details class="nav-mobile-group${groupClass(supportPages)}"${supportPages.includes(currentPage) ? ' open' : ''}>
-      <summary>Get Support <span aria-hidden="true">⌄</span></summary>
+      <summary>Get Support <span class="nav-chevron" aria-hidden="true"></span></summary>
       <div class="nav-mobile-submenu">
         <a href="get-support.html"${current('get-support.html')}>Support Overview</a>
         <a href="support-chat.html"${current('support-chat.html')}>Talk to a Listener</a>
@@ -62,15 +62,25 @@
     dropdown.classList.remove('open');
     dropdown.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
   };
+  const openDropdown = dropdown => {
+    dropdowns.forEach(otherDropdown => {
+      if (otherDropdown !== dropdown) closeDropdown(otherDropdown);
+    });
+    dropdown.classList.add('open');
+    dropdown.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'true');
+  };
   dropdowns.forEach(dropdown => {
     const toggle = dropdown.querySelector('.nav-dropdown-toggle');
     toggle.addEventListener('click', () => {
       const willOpen = !dropdown.classList.contains('open');
       dropdowns.forEach(closeDropdown);
-      if (willOpen) {
-        dropdown.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-      }
+      if (willOpen) openDropdown(dropdown);
+    });
+    dropdown.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(min-width: 1201px)').matches) openDropdown(dropdown);
+    });
+    dropdown.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(min-width: 1201px)').matches) closeDropdown(dropdown);
     });
   });
   document.addEventListener('click', event => {
