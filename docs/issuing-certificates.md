@@ -26,7 +26,7 @@ The command validates the fields, generates a cryptographically random verificat
 ## Issue and test
 
 1. Run `01-insert-draft.sql` in the Supabase SQL Editor. Draft records intentionally return not found publicly.
-2. Put the exact URL from `verification-url.txt` into the certificate generator's QR code. Do not shorten or alter it.
+2. Open the private `private-certificates/generator/SafetyNet Certificate Generator - Private.html` in a browser and import the prepared `private-record.json`. It loads the registered fields and encodes the exact secure URL, without appending a certificate number. Add optional duration and skills text. The HTML includes the QR library and works offline.
 3. Check the certificate number, recipient spelling, course and date against `private-record.json`.
 4. Run `02-activate.sql` only when the certificate is approved for issuance.
 5. Open the URL and scan the actual on-screen or printed QR. Confirm the result says valid and every displayed field matches.
@@ -36,4 +36,4 @@ For an issued certificate that must no longer verify, run `03-revoke.sql`; the Q
 
 Corrections to an issued certificate require coordinated changes to both the database and certificate. Never silently change the registered identity or course while an inconsistent printed copy remains in circulation. Record who approved each activation, correction or revocation outside the public website.
 
-The helper does not generate the certificate artwork or QR image. The existing certificate generator source is still needed to automate that final step. Private output is excluded by `.gitignore` and the Netlify build allowlist.
+The corrected generator preserves the supplied artwork. It stays in the ignored private directory, outside GitHub and the website build. Keep a secure backup of the generator and its accompanying QR library licence. Importing another prepared record replaces the displayed details; an invalid import clears the QR and disables printing. The generator does not contact Supabase or activate a certificate. The founder still needs to approve the first real record and scan-test its live result before issuance.
