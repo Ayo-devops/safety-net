@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Talk to a Listener — Safetynet</title>
-<meta name="description" content="Contact Safetynet on WhatsApp for emotional support and faith-related enquiries.">
+<meta name="description" content="Talk with a Safetynet listener through optional website chat, or contact the founder about emotional support and faith-related enquiries.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -167,9 +167,12 @@
   </article>
 </section>
 <section class="listener-notice" aria-labelledby="web-chat-heading">
-  <span class="eyebrow">Coming later</span>
-  <h2 id="web-chat-heading">Chat Here Without Sharing Your Contact Details</h2>
-  <p>We are planning a website chat option. It is not available yet. For now, you can contact the founder on WhatsApp, which shows your phone number to the person you message.</p>
+  <span class="eyebrow">Website chat</span>
+  <h2 id="web-chat-heading">Talk Without Giving Us Your Name or Phone Number</h2>
+  <p>You can introduce yourself as <strong>“Service User”</strong> and talk about the emotional issue you are facing. Do not share your name, location, helping ID, workplace, school, passwords, financial information, or other identifying details.</p>
+  <p>This chat uses tawk.to. When you choose to start, its service will load and may process technical information about your device or network. Complete anonymity and absolute confidentiality cannot be guaranteed. A listener may not be online immediately, and this is not an emergency service.</p>
+  <button class="listener-chat-button" type="button" id="startWebChat" aria-describedby="chatConsentNote">Start Website Chat</button>
+  <p class="listener-chat-status" id="chatConsentNote" role="status">The chat service will not load until you select the button.</p>
 </section>
 <section class="listener-notice" id="conversation-guidelines" aria-labelledby="guidelines-heading">
   <span class="eyebrow">Before you talk</span>
@@ -181,7 +184,7 @@
     <li><strong>Keep the conversation respectful.</strong> Threats, harassment, and abusive messages are not acceptable. You can stop the chat if you feel uncomfortable.</li>
     <li><strong>Ask for help with concerns.</strong> If a contact pressures you for personal details or makes you uncomfortable, end the conversation and report the concern to <a href="mailto:safetynetorgng@gmail.com">safetynetorgng@gmail.com</a>. A report sent by email reveals your email address.</li>
   </ul>
-  <p><strong>A label alone does not make a chat anonymous.</strong> WhatsApp reveals your phone number and may show profile information. The planned website chat is not yet available, and we cannot promise complete anonymity or absolute confidentiality.</p>
+  <p><strong>A label alone does not make a chat anonymous.</strong> WhatsApp reveals your phone number and may show profile information. Website chat does not require you to give us your name or phone number, but its provider may process technical information. We cannot promise complete anonymity or absolute confidentiality.</p>
   <p>You could begin with: <em>“Hello, I’m a Service User. I’ve been feeling stressed and neglected, and I’d like someone to listen.”</em></p>
   <p>These privacy guidelines concern support conversations. If you need emergency help, give the emergency responder the information they need to assist you.</p>
 </section>
@@ -218,6 +221,57 @@
     const isOpen = navPanel.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', isOpen);
   });
+
+  const startWebChat = document.getElementById('startWebChat');
+  const chatConsentNote = document.getElementById('chatConsentNote');
+  let chatLoading = false;
+  let chatLoadTimer;
+
+  function openWebChat() {
+    if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+      window.Tawk_API.showWidget();
+      window.Tawk_API.maximize();
+      return;
+    }
+    if (chatLoading) return;
+    chatLoading = true;
+    startWebChat.disabled = true;
+    startWebChat.textContent = 'Opening Chat…';
+    chatConsentNote.textContent = 'Connecting to the website chat service…';
+
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
+    window.Tawk_API.onLoad = function () {
+      window.clearTimeout(chatLoadTimer);
+      chatLoading = false;
+      startWebChat.disabled = false;
+      startWebChat.textContent = 'Open Website Chat';
+      chatConsentNote.textContent = 'Chat is ready. You may refer to yourself as “Service User.”';
+      window.Tawk_API.showWidget();
+      window.Tawk_API.maximize();
+    };
+
+    const widgetScript = document.createElement('script');
+    widgetScript.async = true;
+    widgetScript.src = 'https://embed.tawk.to/6abbf9e5100fc5344640a9b5/1k3n4gb4i';
+    widgetScript.charset = 'UTF-8';
+    widgetScript.setAttribute('crossorigin', '*');
+    widgetScript.onerror = function () {
+      window.clearTimeout(chatLoadTimer);
+      widgetScript.remove();
+      chatLoading = false;
+      startWebChat.disabled = false;
+      startWebChat.textContent = 'Try Website Chat Again';
+      chatConsentNote.textContent = 'The chat service could not load. Check your connection and try again.';
+    };
+    document.body.appendChild(widgetScript);
+    chatLoadTimer = window.setTimeout(function () {
+      if (!chatLoading) return;
+      widgetScript.onerror();
+    }, 15000);
+  }
+
+  startWebChat.addEventListener('click', openWebChat);
 </script>
 
 </body>

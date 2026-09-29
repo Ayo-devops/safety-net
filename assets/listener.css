@@ -9,6 +9,10 @@
 .listener-guidelines { padding-left: 22px; color: var(--ink-soft); }
 .listener-guidelines li { margin: 16px 0; }
 .listener-guidelines a { overflow-wrap: anywhere; }
+.listener-chat-button { margin-top: 20px; padding: 13px 24px; border: 0; border-radius: 999px; background: var(--pine); color: var(--paper); font: 600 .92rem 'Inter', sans-serif; cursor: pointer; }
+.listener-chat-button:hover { background: var(--pine-deep); }
+.listener-chat-button:disabled { cursor: wait; opacity: .7; }
+.listener-chat-status { font-size: .86rem; }
 #conversation-guidelines { scroll-margin-top: 110px; }
 @media (max-width: 700px) {
   .listener-options { grid-template-columns: 1fr; }

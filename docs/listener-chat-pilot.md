@@ -1,6 +1,6 @@
 # Safetynet listener chat pilot
 
-Status: preparation only. No chat provider is connected and no visitor data is sent to a new service.
+Status: website integration added 29 September 2026. The tawk.to script is restricted to the Talk to a Listener page and loads only after a visitor chooses Start Website Chat. Dashboard privacy, staff access, offline form, retention and listener-account checks remain operational acceptance items.
 
 ## Candidate
 
@@ -23,7 +23,7 @@ Owner account: safetynetorgng@gmail.com. Do not store account passwords, API sec
 
 ## Website integration
 
-Load the widget only after the visitor chooses to open chat and sees a short privacy notice. No tracker should load on unrelated pages. Do not pass a visitor's name or phone number. Keep current WhatsApp links explicitly separate and labelled as non-anonymous.
+The website loads the widget only after the visitor chooses to open chat and sees a short privacy notice. No tawk.to script is present on unrelated pages, and the site does not pass a visitor's name or phone number. Keep current WhatsApp links explicitly separate and labelled as non-anonymous.
 
 ## Acceptance checks
 
