@@ -76,12 +76,6 @@
       dropdowns.forEach(closeDropdown);
       if (willOpen) openDropdown(dropdown);
     });
-    dropdown.addEventListener('mouseenter', () => {
-      if (window.matchMedia('(min-width: 1201px)').matches) openDropdown(dropdown);
-    });
-    dropdown.addEventListener('mouseleave', () => {
-      if (window.matchMedia('(min-width: 1201px)').matches) closeDropdown(dropdown);
-    });
   });
   document.addEventListener('click', event => {
     if (!event.target.closest('.nav-dropdown')) dropdowns.forEach(closeDropdown);
